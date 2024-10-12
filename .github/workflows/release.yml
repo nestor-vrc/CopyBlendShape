@@ -29,13 +29,3 @@ jobs:
         with:
           name: CopyBlendShape_v${{ steps.get_version.outputs.version }}.unitypackage
           path: CopyBlendShape_v${{ steps.get_version.outputs.version }}.unitypackage
-
-      - name: Create GitHub release 🎉
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: CopyBlendShape_v${{ steps.get_version.outputs.version }}.unitypackage
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref_name }}
-          name: "Release: ${{ github.ref_name }} 🎊"
-          draft: false
-          prerelease: false

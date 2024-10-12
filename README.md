@@ -2,7 +2,7 @@
 
 Welcome to the **CopyBlendShape** Unity Editor extension! This tool allows you to **copy blend shape weights** from one 3D model to another directly in the Unity Editor, streamlining the process of managing facial or other blend shape animations. Whether you're working with character models or custom meshes, **CopyBlendShape** makes it easy to replicate blend shapes across objects.
 
-![Unity Badge](https://img.shields.io/badge/Unity-CopyBlendShape-blueviolet?style=flat-square) ![License Badge](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)
+![Release .unitypackage 🚀](https://github.com/nestor-vrc/CopyBlendShape/actions/workflows/release.yml/badge.svg) ![Unity Badge](https://img.shields.io/badge/Unity-CopyBlendShape-blueviolet?style=flat-square) ![License Badge](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)
 
 ## 🚀 Features
 

@@ -24,8 +24,7 @@ jobs:
             ./Assets/Nestor/**
           dest: CopyBlendShape_v${{ steps.get_version.outputs.version }}.unitypackage
 
-      - name: Upload unitypackage artifact 📤
-        uses: actions/upload-artifact@v3
+      - name: 🚀 Publish release
+        uses: softprops/action-gh-release@v2
         with:
-          name: CopyBlendShape_v${{ steps.get_version.outputs.version }}.unitypackage
-          path: CopyBlendShape_v${{ steps.get_version.outputs.version }}.unitypackage
+          files: CopyBlendShape_v${{ steps.get_version.outputs.version }}.unitypackage

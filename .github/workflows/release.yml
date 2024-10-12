@@ -1,0 +1,37 @@
+name: "Release .unitypackage 🚀"
+
+on:
+  push:
+    tags:
+      - v\d+\.\d+\.\d+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository 📥
+        uses: actions/checkout@v4
+
+      - name: Create .unitypackage from Assets 📦
+        uses: natsuneko-laboratory/create-unitypackage@v3
+        with:
+          files-glob: |
+            ./Assets/Nestor/**
+          dest: CopyBlendShape_${{ github.ref }}.unitypackage
+
+      - name: Upload unitypackage artifact 📤
+        uses: actions/upload-artifact@v3
+        with:
+          name: CopyBlendShape_${{ github.ref }}.unitypackage
+          path: CopyBlendShape_${{ github.ref }}.unitypackage
+
+      - name: Create GitHub release 🎉
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: CopyBlendShape_${{ github.ref }}.unitypackage
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref }}
+          name: "Release: ${{ github.ref }} 🎊"
+          draft: false
+          prerelease: false

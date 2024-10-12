@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - v\d+\.\d+\.\d+
+  workflow_dispatch:
 
 jobs:
   build:
@@ -13,25 +14,28 @@ jobs:
       - name: Checkout repository 📥
         uses: actions/checkout@v4
 
+      - id: get_version
+        uses: jannemattila/get-version-from-tag@v3
+
       - name: Create .unitypackage from Assets 📦
         uses: natsuneko-laboratory/create-unitypackage@v3
         with:
           files-glob: |
             ./Assets/Nestor/**
-          dest: CopyBlendShape_${{ github.ref }}.unitypackage
+          dest: CopyBlendShape_v${{ steps.get_version.outputs.version }}.unitypackage
 
       - name: Upload unitypackage artifact 📤
         uses: actions/upload-artifact@v3
         with:
-          name: CopyBlendShape_${{ github.ref }}.unitypackage
-          path: CopyBlendShape_${{ github.ref }}.unitypackage
+          name: CopyBlendShape_v${{ steps.get_version.outputs.version }}.unitypackage
+          path: CopyBlendShape_v${{ steps.get_version.outputs.version }}.unitypackage
 
       - name: Create GitHub release 🎉
         uses: ncipollo/release-action@v1
         with:
-          artifacts: CopyBlendShape_${{ github.ref }}.unitypackage
+          artifacts: CopyBlendShape_v${{ steps.get_version.outputs.version }}.unitypackage
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref }}
-          name: "Release: ${{ github.ref }} 🎊"
+          tag: ${{ github.ref_name }}
+          name: "Release: ${{ github.ref_name }} 🎊"
           draft: false
           prerelease: false

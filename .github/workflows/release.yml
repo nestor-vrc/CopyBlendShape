@@ -1,10 +1,10 @@
 name: "Release .unitypackage 🚀"
 
 on:
-  push:
-    tags:
-      - v\d+\.\d+\.\d+
-  workflow_dispatch:
+  release:
+    types:
+      - edited
+      - released
 
 jobs:
   build:
